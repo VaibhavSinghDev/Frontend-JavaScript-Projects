@@ -14,10 +14,11 @@ document.querySelector('.check').addEventListener('click', function () {
   if (!inputNumber) {
     document.querySelector('.message').innerHTML = "No number provided!";
   }
-  // When the guess is too low
-  else if (inputNumber < randomNumber) {
+  // When the guess is wrong
+
+  else if (inputNumber !== randomNumber) {
     if (score > 1) {
-      document.querySelector('.message').innerHTML = "Your guess is too small!";
+      document.querySelector('.message').innerHTML = guess > randomNumber ? "Your guess is too high!" : "Your guess is too low!";
 
       score = score - 1;
       document.querySelector('.score').textContent = score;
@@ -28,21 +29,7 @@ document.querySelector('.check').addEventListener('click', function () {
       document.querySelector('.score').innerHTML = 0;
     }
   }
-  // When the guess is too high
-  else if (inputNumber > randomNumber) {
-    if (score > 1) {
-      document.querySelector('.message').innerHTML = "Your guess is too high!";
 
-      score = score - 1;
-      document.querySelector('.score').textContent = score;
-    }
-    // Player exhausts the score and loses the game.
-    else {
-      document.querySelector('.message').innerHTML = "You lost!";
-
-      document.querySelector('.score').innerHTML = 0;
-    }
-  }
   // Player Wins 
   else {
     document.querySelector('.message').innerHTML = "Congratulations! Your guess is correct ";
