@@ -18,8 +18,7 @@ document.querySelector('.check').addEventListener('click', function () {
 
   else if (inputNumber !== randomNumber) {
     if (score > 1) {
-      document.querySelector('.message').innerHTML = guess > randomNumber ? "Your guess is too high!" : "Your guess is too low!";
-
+      document.querySelector('.message').textContent = inputNumber > randomNumber ? "Your guess is too high!" : "Your guess is too low!";
       score = score - 1;
       document.querySelector('.score').textContent = score;
     }
