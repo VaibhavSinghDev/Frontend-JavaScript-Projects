@@ -7,31 +7,40 @@ let randomNumber = Math.trunc(Math.random() * (max - min + 1)) + min;
 let score = 20;
 let highScore = 0;
 
+//function to print the winning and losing msg along with the case of no input
+const printMessage = function (message) {
+  document.querySelector('.message').textContent = message;
+}
+
 document.querySelector('.check').addEventListener('click', function () {
   const inputNumber = Number(document.querySelector('.guess').value);
 
   // No input provided
   if (!inputNumber) {
-    document.querySelector('.message').innerHTML = "No number provided!";
+    printMessage("No number provided!");
   }
-  // When the guess is wrong
 
+  // When the guess is wrong
   else if (inputNumber !== randomNumber) {
     if (score > 1) {
-      document.querySelector('.message').textContent = inputNumber > randomNumber ? "Your guess is too high!" : "Your guess is too low!";
+
+      printMessage(inputNumber > randomNumber ? "Your guess is too high!" : "Your guess is too low!");
+
       score = score - 1;
+
       document.querySelector('.score').textContent = score;
     }
+
     // Player exhausts the score and loses the game.
     else {
-      document.querySelector('.message').innerHTML = "You lost!";
-      document.querySelector('.score').innerHTML = 0;
+      printMessage("You lost!");
+      document.querySelector('.score').textContent = 0;
     }
   }
 
   // Player Wins 
   else {
-    document.querySelector('.message').innerHTML = "Congratulations! Your guess is correct ";
+    printMessage("Congratulations! Your guess is correct ");
 
     document.querySelector('.number').textContent = randomNumber;
 
@@ -45,15 +54,23 @@ document.querySelector('.check').addEventListener('click', function () {
     }
   }
 });
+
 //Reset the game
 document.querySelector('.again').addEventListener('click', function () {
 
   randomNumber = Math.trunc(Math.random() * (max - min + 1)) + min;
+
   score = 20;
-  document.querySelector('.message').innerHTML = "Start guessing...";
+
+  printMessage("Start guessing...");
+
   document.querySelector('.number').style.width = '15rem';
+
   document.querySelector('body').style.backgroundColor = '#222';
+
   document.querySelector('.number').textContent = '?';
+
   document.querySelector('.guess').value = '';
+
   document.querySelector('.score').textContent = score;
 });
